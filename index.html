@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <title data-lang-title="title">Онлайн перегляд КТ</title>
+      <meta name="viewport" content="width=device-width"/>
+      <meta name="description" data-lang-textContent="content" content="Відкривайте та переглядайте комп'ютерну томограму в браузері">
+      <script type="module" src="./index.js"></script>
+    </head>
+    <style>
+        body {
+            margin: 0;
+        }
+        button {
+            padding: 1em;
+            font-size: larger;
+        }
+        canvas {
+            border: 2px solid dodgerblue;
+        }
+        label {
+            color: rgb(155, 44, 0);
+        }
+        #ctn {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .canvas-ctn {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 1em;
+        }
+    </style>
+    <header>
+        <button id="filterBtn" type="button">Apply Filter</button>
+    </header>
+    <body id="app">
+        <div id="ctn">
+            <div class="canvas-ctn">
+                <label for="originalCvs">ORIGINAL</label>
+                <canvas id="originalCvs"></canvas>
+            </div>
+
+            <div class="canvas-ctn">
+                <label for="originalCvs">MEDIAN</label>
+                <canvas id="medianCvs"></canvas>
+            </div>
+
+            <div class="canvas-ctn">
+                <label for="originalCvs">ADAPTIVE MEDIAN</label>
+                <canvas id="adaptiveMedianCvs"></canvas>
+            </div>
+
+            <div style="display:none;">
+                <img id="source" width="401" height="338" />
+            </div>
+        </div>
+    </body>
+    
+</html>
