@@ -46,7 +46,7 @@ export function medianFilter(array: Uint8Array, width: number, height: number): 
     }
     
     let frame = 0;
-    let neighberhoodPixels: number[] = [];
+    let nearbyPixels: number[] = [];
     let sorted: number[] = [];
     let pixelIndex: number;
 
@@ -67,8 +67,8 @@ export function medianFilter(array: Uint8Array, width: number, height: number): 
             
             for (let k = 1; k < borderWidth; k++) {
                 pixelIndex = frame + ((j * width) + k);
-                neighberhoodPixels = getNearbyPixels(pixelIndex, width);
-                sorted = neighberhoodPixels.sort(sortArray);
+                nearbyPixels = getNearbyPixels(pixelIndex, width);
+                sorted = nearbyPixels.sort(sortArray);
 
                 // Median(middle) value will always have index 4 because we constantly have 9 length array 
                 newArray[pixelIndex] = sorted[4];
@@ -125,17 +125,18 @@ export function adaptiveMedianFilter(array: Uint8Array, width: number, height: n
     }
 
     let frame = 0;
-    let neighberhoodPixels: number[] = [];
+    let nearbyPixels: number[] = [];
     let sorted: number[] = [];
     let pixelIndex: number;
     let pixel: number;
+    // Minimum, maximum and median gray levels
     let zMin: number, zMax: number, zMed: number;
 
     const computation = function(filterSize: number, maxFilterSize: number, pixelIndex: number) {
 
-        neighberhoodPixels = getNearbyPixels(pixelIndex, width, filterSize);
+        nearbyPixels = getNearbyPixels(pixelIndex, width, filterSize);
 
-        sorted = neighberhoodPixels.sort(sortArray);
+        sorted = nearbyPixels.sort(sortArray);
 
         zMin = sorted[0];
         zMax = sorted[sorted.length - 1];
